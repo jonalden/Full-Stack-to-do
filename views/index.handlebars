@@ -2,37 +2,42 @@
 
 <div class="container">
     <div class="row">
-        <ul class="col-md-4">
+        <ul class="col-md-4" id="completedDiv">
+            <h2>Completed</h2>
             {{#each todo}}
             {{#if completed}}
-            <div class="card" style="width: 18rem; border: 1px solid black; margin: 5px; width: 100%">
+            <div class="card">
                 {{task}}
             </div>
             {{/if}}
             {{/each}}
         </ul>
 
-        <form class="col-md-4">
+        <form class="col-md-4" id="textArea">
             <div class="form-group">
                 <textarea class="form-control" placeholder="Enter a new task here" id="taskTextArea"
                     rows="3"></textarea>
             </div>
-            <button type="submit" id="newTaskBtn" class="btn btn-primary">Submit</button>
+            <button type="submit" id="newTaskBtn" class="btn btn-primary">Add to tasks</button>
         </form>
 
-        <ul class="col-md-4" style="display: flex; flex-wrap: wrap">
+        <ul class="col-md-4" id="completedDiv">
+            <h2>Need to do</h2>
             {{#each todo}}
             {{#unless completed}}
-            <div class="card" style="width: 100%; margin: 10px; border: 1px solid black">
+            <div class="card">
                 {{task}}
-                <form>
-                    <input type="hidden" name="complete" value="1">
-                    <button type="submit" class="btn btn-info btn-xs completeBtn" data-value={{id}}>Complete! <span
-                            class="glyphicon glyphicon-cutlery"></span></button>
-                </form>
-                <form>
-                    <button type="submit" class="btn btn-danger btn-xs deleteBtn" data-value={{id}}>Delete Task</button>
-                </form>
+                <div class="cardButtons">
+                    <form>
+                        <input type="hidden" name="complete" value="1">
+                        <button type="submit" class="btn btn-info btn-xs completeBtn" data-value={{id}}>Complete!
+                        </button>
+                    </form>
+                    <form>
+                        <button type="submit" class="btn btn-danger btn-xs deleteBtn" data-value={{id}}>Delete
+                            Task</button>
+                    </form>
+                </div>
             </div>
             {{/unless}}
             {{/each}}

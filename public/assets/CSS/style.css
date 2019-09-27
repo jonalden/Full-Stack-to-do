@@ -1,0 +1,56 @@
+body {
+    font-family: 'Mansalva', cursive;
+    background: rgb(241, 240, 232)
+}
+
+#completedDiv {
+    background: rgb(173, 196, 206);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 70px;
+}
+
+h2 {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.card {
+    width: 18rem; 
+    border: 1px solid black; 
+    margin: 7 auto; 
+    width: 100%;
+    padding: 10px;
+}
+
+.cardButtons {
+    display: flex;
+    margin: 10 10 10;
+    height: 40px;
+}
+
+.btn {
+    margin: 0 20 0 0;
+}
+
+#textArea {
+    text-align: center;
+}
+
+#newTaskBtn, .completeBtn  {
+    background: rgb(108, 178, 209);
+    border: 1px solid black;
+}
+
+.deleteBtn {
+    background: rgb(249, 102, 94);
+    border: 1px solid black;
+}
+
+
+
+
+
