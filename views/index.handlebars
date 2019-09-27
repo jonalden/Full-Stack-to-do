@@ -1,38 +1,42 @@
-<h1 style="text-align: center">To do list</h1>
+<h1 style="text-align: center; margin: 40 auto">To do list</h1>
 
-<ul class="container" style="border: 1px solid red">
-    {{#each todo}}
-    {{#if completed}}
-    {{task}}
-    {{/if}}
-    {{/each}}
-</ul>
-    
+<div class="container">
+    <div class="row">
+        <ul class="col-md-4">
+            {{#each todo}}
+            {{#if completed}}
+            <div class="card" style="width: 18rem; border: 1px solid black; margin: 5px; width: 100%">
+                {{task}}
+            </div>
+            {{/if}}
+            {{/each}}
+        </ul>
 
-
-<ul class="container" style="border: 1px solid blue">
-    <div class="card" style="width: 18rem; border: 1px solid black; margin: 5px; text-allign: center">
-        {{#each todo}}
-        {{#unless completed}}
-        {{task}}
-        <form action="tasks/update/complete/{{this.id}}?_method=PUT" method="PUT">
-            <input type="hidden" name="complete" value="1">
-            <button type="submit" class="btn btn-info btn-xs" id="completeBtn">Complete! <span
-                    class="glyphicon glyphicon-cutlery"></span></button>
+        <form class="col-md-4">
+            <div class="form-group">
+                <textarea class="form-control" placeholder="Enter a new task here" id="taskTextArea"
+                    rows="3"></textarea>
+            </div>
+            <button type="submit" id="newTaskBtn" class="btn btn-primary">Submit</button>
         </form>
-        <form action="task/delete/{{this.id}}?_method=DELETE" method="DELETE">
-            <button type="submit" class="btn btn-danger btn-xs" id="deleteBtn">Delete Task</button>
-        </form>
-    </div>
-    {{/unless}}
-    {{/each}}
-</ul>
 
+        <ul class="col-md-4" style="display: flex; flex-wrap: wrap">
+            {{#each todo}}
+            {{#unless completed}}
+            <div class="card" style="width: 100%; margin: 10px; border: 1px solid black">
+                {{task}}
+                <form>
+                    <input type="hidden" name="complete" value="1">
+                    <button type="submit" class="btn btn-info btn-xs completeBtn" data-value={{id}}>Complete! <span
+                            class="glyphicon glyphicon-cutlery"></span></button>
+                </form>
+                <form>
+                    <button type="submit" class="btn btn-danger btn-xs deleteBtn" data-value={{id}}>Delete Task</button>
+                </form>
+            </div>
+            {{/unless}}
+            {{/each}}
+        </ul>
 
-<form class="container">
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">Enter new task here</label>
-        <textarea class="form-control" id="taskTextArea" rows="3"></textarea>
     </div>
-    <button type="submit" id="newTaskBtn" class="btn btn-primary">Submit</button>
-</form>
+</div>

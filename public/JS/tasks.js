@@ -6,7 +6,9 @@ document.getElementById("newTaskBtn").addEventListener("click", function () {
 
 
     var url = '/api/todo';
-    var data = { task: task };
+    var data = {
+        task: task
+    };
 
     fetch(url, {
         method: 'POST',
@@ -16,61 +18,54 @@ document.getElementById("newTaskBtn").addEventListener("click", function () {
         }
     }).then(res => res.json())
         .catch(error => console.error('Error:', error))
-        .then(response => console.log('Success:', response));
-    location.reload();
+        .then(response => {
+            location.reload();
+            console.log('Success:', response);
+        })
 
 })
 
-document.getElementById("completeBtn").addEventListener("click", function () {
-    event.preventDefault();
+document.querySelectorAll(".completeBtn").forEach(function (node) {
+    node.addEventListener("click", function () {
+        event.preventDefault();
+        console.log(this.getAttribute("data-value"));
+        var id = (this.getAttribute("data-value"));
+        console.log(id)
 
-    var id = $(this).data("id");
-    var data = { completed: true };
-
-    // Send the PUT request.
-    $.ajax("/api/todo/" + id, {
-        type: "PUT",
-        data: data
-    }).then(
-        function () {
-            console.log("changed task to", data);
-            // Reload the page to get the updated list
-            location.reload();
-        }
-    );
-});
-
-
-
+        // Send the PUT request.
+        $.ajax("/api/todo/" + id, {
+            type: "PUT"
+        }).then(
+            function (data) {
+                console.log("changed task to", data);
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+    })
+})
 
 
-// const url = '/api/todo';
-// const id = req.body.id;
-// // 
 
-// fetch(url + id, {
-//     method: 'PUT',
-//     body: { completed: true },
-//     headers: {
-//         'Content-Type': 'application/json'
-//     }
-// }).then(res => res.json())
-//     .catch(error => console.error('Error:', error))
-//     .then(response => console.log('Success:', response));
+document.querySelectorAll(".deleteBtn").forEach(function (node) {
+    node.addEventListener("click", function () {
+        event.preventDefault();
 
-// })
+        var id = (this.getAttribute("data-value"));
+        console.log(this)
+        // Send the DELETE request.
+        $.ajax("/api/todo/" + id, {
+            type: "DELETE"
+        }).then(
+            function () {
+                console.log("deleted task", id);
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+    });
+})
 
-$("deleteBtn").on("click", function (event) {
-    var id = $(this).data("id");
 
-    // Send the DELETE request.
-    $.ajax("/api/todo/" + id, {
-        type: "DELETE"
-    }).then(
-        function () {
-            console.log("deleted task", id);
-            // Reload the page to get the updated list
-            location.reload();
-        }
-    );
-});
+
+

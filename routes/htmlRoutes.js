@@ -23,10 +23,13 @@ module.exports = function (app) {
         })
     });
 
-    app.put("/api/todo:id", function(req, res) {
+    app.put("/api/todo/:id", function(req, res) {
+        
         db.Todo.update({
-            completed: req.params.completed
-        }).then(function(dbTodo) {
+            completed: true
+        }, {where: {
+            id : req.params.id
+        }}).then(function(dbTodo) {
             res.json(dbTodo);
         })
     })
