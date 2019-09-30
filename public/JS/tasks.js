@@ -5,8 +5,8 @@ document.getElementById("newTaskBtn").addEventListener("click", function () {
     let task = document.getElementById("taskTextArea").value.trim();
 
 
-    var url = '/api/todo';
-    var data = {
+    const url = '/api/todo';
+    const data = {
         task: task
     };
 
@@ -29,7 +29,7 @@ document.querySelectorAll(".completeBtn").forEach(function (node) {
     node.addEventListener("click", function () {
         event.preventDefault();
         console.log(this.getAttribute("data-value"));
-        var id = (this.getAttribute("data-value"));
+        const id = (this.getAttribute("data-value"));
         console.log(id)
 
         // Send the PUT request.
@@ -51,7 +51,7 @@ document.querySelectorAll(".deleteBtn").forEach(function (node) {
     node.addEventListener("click", function () {
         event.preventDefault();
 
-        var id = (this.getAttribute("data-value"));
+        const id = (this.getAttribute("data-value"));
         console.log(this)
         // Send the DELETE request.
         $.ajax("/api/todo/" + id, {
