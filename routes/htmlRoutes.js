@@ -9,11 +9,10 @@ module.exports = function (app) {
             res.render("index", {
                 todo: dbTodos
             })
-            
         })
     });
 
-    // POST route for saving a new todo
+    // POST route for creating a new todo
     app.post("/api/todo", function (req, res) {
         console.log("POST ROUTE", req.body.task)
         db.Todo.create({
@@ -24,13 +23,14 @@ module.exports = function (app) {
     });
 
     app.put("/api/todo/:id", function(req, res) {
-        
+
         db.Todo.update({
             completed: true
         }, {where: {
             id : req.params.id
         }}).then(function(dbTodo) {
             res.json(dbTodo);
+            console.log("You updated the task  to COMPLETED")
         })
     })
 
@@ -43,7 +43,4 @@ module.exports = function (app) {
             res.json(dbTodo)
         })
     })
-
-
-    // app.put  based on an id is going o turn completed to true
 }

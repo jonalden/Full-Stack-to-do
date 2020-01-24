@@ -1,7 +1,7 @@
 document.getElementById("newTaskBtn").addEventListener("click", function () {
     event.preventDefault();
 
-    // get the value of the input 
+    // get the value of the input
     let task = document.getElementById("taskTextArea").value.trim();
 
 
@@ -28,9 +28,7 @@ document.getElementById("newTaskBtn").addEventListener("click", function () {
 document.querySelectorAll(".completeBtn").forEach(function (node) {
     node.addEventListener("click", function () {
         event.preventDefault();
-        console.log(this.getAttribute("data-value"));
         const id = (this.getAttribute("data-value"));
-        console.log(id)
 
         // Send the PUT request.
         $.ajax("/api/todo/" + id, {
@@ -65,7 +63,3 @@ document.querySelectorAll(".deleteBtn").forEach(function (node) {
         );
     });
 })
-
-
-
-

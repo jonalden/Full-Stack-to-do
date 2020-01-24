@@ -3,11 +3,17 @@
 <div class="container">
     <div class="row">
         <ul class="col-md-4" id="completedDiv">
-            <h2>Completed</h2>
+            <h2><u>Completed</u></h2>
             {{#each todo}}
             {{#if completed}}
             <div class="card">
                 {{task}}
+                <div class="cardButtons">
+                    <form>
+                        <button type="submit" class="btn btn-danger btn-xs deleteBtn" data-value={{id}}>Delete
+                            Task</button>
+                    </form>
+                </div>
             </div>
             {{/if}}
             {{/each}}
@@ -22,7 +28,7 @@
         </form>
 
         <ul class="col-md-4" id="completedDiv">
-            <h2>Need to do</h2>
+            <h2><u>Need to do</u></h2>
             {{#each todo}}
             {{#unless completed}}
             <div class="card">
